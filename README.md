@@ -31,7 +31,7 @@ All variables are described in the following table and have default values that 
 
 | Variable name | Description | Default value |
 | --- | --- | --- |
-| `APPLICATION_CONTAINER_NAME` | Container name. Can be used to identify container when using `docker` and `docker-compose` commands. | `glpi` |
+| `LOGSTASH_PLUGIN_HOME` | Directory of the Logstash plugin under development. | `./mounts/logstash-plugin` |
 
 ## Build application container
 
