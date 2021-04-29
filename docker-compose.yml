@@ -6,6 +6,7 @@ services:
         restart: "unless-stopped"
         build:
             context: "containers/logstash"
+        command: sleep 1d
         networks:
             default:
                 aliases:

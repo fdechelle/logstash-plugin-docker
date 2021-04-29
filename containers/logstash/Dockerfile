@@ -10,3 +10,4 @@ USER logstash
 # https://github.com/elastic/logstash/issues/6052
 # https://github.com/elastic/logstash/issues/3612
 RUN grep -qs bundler /usr/share/logstash/Gemfile || echo 'gem "bundler"' >> /usr/share/logstash/Gemfile
+RUN PATH=/usr/share/logstash/jdk/bin:/usr/share/logstash/vendor/jruby/bin:/usr/share/logstash/vendor/bundle/jruby/2.5.0/gems/rake-12.3.3/bin:$PATH gem install bundler
