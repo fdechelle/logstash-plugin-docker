@@ -32,6 +32,7 @@ All variables are described in the following table and have default values that 
 | Variable name | Description | Default value |
 | --- | --- | --- |
 | `LOGSTASH_PLUGIN_HOME` | Directory of the Logstash plugin under development. | `./mounts/logstash-plugin` |
+| `LOGSTASH_PIPELINE` | Directory of the Logstash pipeline configuration directory. | `./mounts/logstash/pipeline/idmef` |
 
 ## Build application container
 

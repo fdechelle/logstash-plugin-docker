@@ -6,6 +6,8 @@ services:
         restart: "unless-stopped"
         build:
             context: "containers/logstash"
+            args:
+                PLUGIN_GEMSPEC: "${PLUGIN_GEMSPEC}"
         command: sleep 1d
         networks:
             default:
@@ -16,7 +18,7 @@ services:
             - 9600:9600
         volumes:
             - type: "bind"
-              source: "${LOGSTASH_PLUGIN_HOME:-./mounts/logstash-plugin}"
+              source: "${PLUGIN_HOME:-./mounts/logstash-plugin}"
               target: "/home/logstash-plugin"
             - type: "bind"
               source: "${LOGSTASH_PIPELINE:-./mounts/logstash/pipeline}"
