@@ -34,12 +34,15 @@ All variables are described in the following table and have default values that 
 | `LOGSTASH_PLUGIN_HOME` | Directory of the Logstash plugin under development. | `./mounts/logstash-plugin` |
 | `LOGSTASH_PIPELINE` | Directory of the Logstash pipeline configuration directory. | `./mounts/logstash/pipeline/idmef` |
 
-## Build application container
+## Running
 
-# Build and install plugin
+### Running beats+nginx
 
-## build using gem
+Logstash command line:
 
-## install plugin
+On logstash VM:
+```
+sudo /usr/share/logstash/bin/logstash -f ./mounts/logstash/pipeline/beats/logstash.conf 
+```
 
-# Test plugin
+
