@@ -38,16 +38,17 @@ All variables are described in the following table and have default values that 
 
 ### Running beats+nginx
 
-Run logstash first:
+Run logstash first (as root):
 
 ```
-sudo /usr/share/logstash/bin/logstash -f ./mounts/logstash/pipeline/beats/logstash.conf 
+export _JAVA_OPTIONS="-Djava.net.preferIPv4Stack=true"
+/usr/share/logstash/bin/logstash -f $HOME/logstash-docker-helper/mounts/logstash/pipeline/beats/logstash.conf 
 ```
 
 Then start beats+nginx containers, in a separate shell:
 
 ```
-docker-compose up --file docker-compose.nginx.yml:docker-compose.beats.yml --remove-orphans
+docker-compose up --file docker-compose.nginx.yml --file docker-compose.beats.yml --remove-orphans
 ```
 
 Then load http://192.168.56.106:8080 on host to visit Nginx home page.

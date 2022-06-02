@@ -5,6 +5,7 @@ services:
         image: "docker.elastic.co/beats/filebeat:7.12.0"
         container_name: "beats"
         restart: "unless-stopped"
+        network_mode: "host"
         volumes:
             - type: "bind"
               source: "${NGINX_LOG_DIR:-./mounts/nginx/log}"
@@ -14,7 +15,7 @@ services:
               target: "/usr/share/filebeat/filebeat.yml"
               read_only: true
 
-networks:
-    default:
-        driver: "bridge"
-        name: "logstash_bridge"
+#networks:
+#    default:
+#        driver: "bridge"
+#        name: "logstash_bridge"
