@@ -1,6 +1,6 @@
-# Logstash plugin development in docker
+# Logstash docker helper
 
-This is a docker-compose application to develop a [Logstash](https://github.com/elastic/logstash) plugin inside Docker.
+This is a docker-compose application to run various Docker containers connected to logstash.
 
 # Create and configure containers
 
@@ -9,7 +9,8 @@ This is a docker-compose application to develop a [Logstash](https://github.com/
 `docker-compose` simplifies Docker containers definition and configuration using definitions declared in `docker-compose.*-.yml` files.
 
 Services declarations are splitted into following files, in order to be able to run only selected services:
-- `docker-compose.yml` for logstash,
+- `docker-compose.beats.yml` for filebeat
+- `docker-compose.nginx.yml` for nginx
 - other files for other services to come
 
 ## Configuring containers to use
@@ -31,18 +32,25 @@ All variables are described in the following table and have default values that 
 
 | Variable name | Description | Default value |
 | --- | --- | --- |
-| `LOGSTASH_PLUGIN_HOME` | Directory of the Logstash plugin under development. | `./mounts/logstash-plugin` |
-| `LOGSTASH_PIPELINE` | Directory of the Logstash pipeline configuration directory. | `./mounts/logstash/pipeline/idmef` |
+| `NONE_YET` | None. | `NONE` |
 
 ## Running
 
 ### Running beats+nginx
 
-Logstash command line:
+Run logstash first:
 
-On logstash VM:
 ```
 sudo /usr/share/logstash/bin/logstash -f ./mounts/logstash/pipeline/beats/logstash.conf 
 ```
 
+Then start beats+nginx containers, in a separate shell:
+
+```
+docker-compose up --file docker-compose.nginx.yml:docker-compose.beats.yml --remove-orphans
+```
+
+Then load http://192.168.56.106:8080 on host to visit Nginx home page.
+
+Events should appear in logstash shell.
 
