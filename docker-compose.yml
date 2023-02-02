@@ -23,6 +23,32 @@ services:
             - type: "bind"
               source: "${LOGSTASH_PIPELINE:-./mounts/logstash/pipeline}"
               target: "/usr/share/logstash/pipeline"
+    nginx:
+        image: "nginx"
+        container_name: "nginx"
+        restart: "unless-stopped"
+        networks:
+            logstash_bridge:
+        ports:
+            - 8080:80
+        volumes:
+            - type: "bind"
+              source: "${NGINX_LOG_DIR:-./mounts/nginx/log}"
+              target: "/var/log/nginx"
+    beats:
+        image: "docker.elastic.co/beats/filebeat:8.6.1"
+        container_name: "beats"
+        restart: "unless-stopped"
+        networks:
+            logstash_bridge:
+        volumes:
+            - type: "bind"
+              source: "${NGINX_LOG_DIR:-./mounts/nginx/log}"
+              target: "/logs/nginx"
+            - type: "bind"
+              source: "${BEATS_CONFIG:-./mounts/beats/filebeat.docker.yml}"
+              target: "/usr/share/filebeat/filebeat.yml"
+              read_only: true
 
 networks:
     logstash_bridge:
