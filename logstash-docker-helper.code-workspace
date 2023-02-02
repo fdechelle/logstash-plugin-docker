@@ -3,6 +3,9 @@
 		{
 			"name": "logstash-docker-helper",
 			"path": "."
+		},
+		{
+			"path": "../logstash-codec-idmefv2"
 		}
 	],
 	"settings": {}

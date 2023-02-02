@@ -8,18 +8,18 @@ services:
             context: "containers/logstash"
             args:
                 PLUGIN_GEMSPEC: "${PLUGIN_GEMSPEC}"
-        command: sleep 1d
-        networks:
-            default:
-                aliases:
-                    - "logstash.local"
+        #command: sleep 1d
+#        networks:
+#            default:
+#                aliases:
+#                    - "logstash.local"
         ports:
             - 5044:5044
             - 9600:9600
         volumes:
-            - type: "bind"
-              source: "${PLUGIN_HOME:-./mounts/logstash-plugin}"
-              target: "/home/logstash-plugin"
+#            - type: "bind"
+#              source: "${PLUGIN_HOME:-./mounts/logstash-plugin}"
+#              target: "/home/logstash-plugin"
             - type: "bind"
               source: "${LOGSTASH_PIPELINE:-./mounts/logstash/pipeline}"
               target: "/usr/share/logstash/pipeline"

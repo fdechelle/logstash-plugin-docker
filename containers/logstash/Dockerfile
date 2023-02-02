@@ -1,23 +1,23 @@
-FROM docker.elastic.co/logstash/logstash-oss:7.11.2-amd64
+FROM logstash:8.6.1
 
-ARG PLUGIN_GEMSPEC
+#ARG PLUGIN_GEMSPEC
 
 # Install softwares
-USER root
-RUN yum update --assumeyes git ; yum install --assumeyes git
-USER logstash
+#USER root
+#RUN yum update --assumeyes git 
+#USER logstash
 
-COPY logstashpath.sh /etc/profile.d
-USER root
-RUN chmod 0644 /etc/profile.d/logstashpath.sh
-USER logstash
+#COPY logstashpath.sh /etc/profile.d
+#USER root
+#RUN chmod 0644 /etc/profile.d/logstashpath.sh
+#USER logstash
 
 # Add bundler to logstash gem file
 # see:
 # https://github.com/elastic/logstash/issues/6052
 # https://github.com/elastic/logstash/issues/3612
-RUN grep -qs bundler /usr/share/logstash/Gemfile || echo 'gem "bundler"' >> /usr/share/logstash/Gemfile
-RUN PATH=/usr/share/logstash/jdk/bin:/usr/share/logstash/vendor/jruby/bin:/usr/share/logstash/vendor/bundle/jruby/2.5.0/gems/rake-12.3.3/bin:$PATH gem install bundler
+#RUN grep -qs bundler /usr/share/logstash/Gemfile || echo 'gem "bundler"' >> /usr/share/logstash/Gemfile
+#RUN PATH=/usr/share/logstash/jdk/bin:/usr/share/logstash/vendor/jruby/bin:/usr/share/logstash/vendor/bundle/jruby/2.5.0/gems/rake-12.3.3/bin:$PATH gem install bundler
 
 # Build plugin
 

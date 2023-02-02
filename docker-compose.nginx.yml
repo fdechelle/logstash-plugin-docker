@@ -12,7 +12,7 @@ services:
               source: "${NGINX_LOG_DIR:-./mounts/nginx/log}"
               target: "/var/log/nginx"
 
-#networks:
-#    default:
-#        driver: "bridge"
-#        name: "logstash_bridge"
+networks:
+    default:
+        driver: "bridge"
+        name: "logstash_bridge"
