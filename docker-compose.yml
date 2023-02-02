@@ -9,10 +9,10 @@ services:
             args:
                 PLUGIN_GEMSPEC: "${PLUGIN_GEMSPEC}"
         #command: sleep 1d
-#        networks:
-#            default:
-#                aliases:
-#                    - "logstash.local"
+        networks:
+            logstash_bridge:
+                aliases:
+                    - "logstash.local"
         ports:
             - 5044:5044
             - 9600:9600
@@ -25,6 +25,5 @@ services:
               target: "/usr/share/logstash/pipeline"
 
 networks:
-    default:
+    logstash_bridge:
         driver: "bridge"
-        name: "logstash_bridge"

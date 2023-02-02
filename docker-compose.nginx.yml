@@ -5,6 +5,8 @@ services:
         image: "nginx"
         container_name: "nginx"
         restart: "unless-stopped"
+        networks:
+            logstash_bridge:
         ports:
             - 8080:80
         volumes:
@@ -13,6 +15,5 @@ services:
               target: "/var/log/nginx"
 
 networks:
-    default:
+    logstash_bridge:
         driver: "bridge"
-        name: "logstash_bridge"

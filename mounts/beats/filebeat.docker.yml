@@ -5,5 +5,5 @@ filebeat.inputs:
     - /logs/nginx/*.log
 
 output.logstash:
-  hosts: ["127.0.0.1:5044"]
+  hosts: ["logstash:5044"]
 
