@@ -1,0 +1,9 @@
+{
+	"folders": [
+		{
+			"name": "logstash-docker-helper",
+			"path": "."
+		}
+	],
+	"settings": {}
+}
