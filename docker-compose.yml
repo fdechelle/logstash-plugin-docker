@@ -6,8 +6,6 @@ services:
         restart: "unless-stopped"
         build:
             context: "containers/logstash"
-            args:
-                PLUGIN_GEMSPEC: "${PLUGIN_GEMSPEC}"
         #command: sleep 1d
         networks:
             logstash_bridge:
