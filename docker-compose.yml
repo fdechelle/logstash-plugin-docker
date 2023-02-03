@@ -6,7 +6,11 @@ services:
         restart: "unless-stopped"
         build:
             context: "containers/logstash"
-        #command: sleep 1d
+            args:
+                PLUGIN_FULL_NAME: "${PLUGIN_FULL_NAME:-logstash-output-stdout}"
+                PLUGIN_HOME: "/home/logstash/plugins/${PLUGIN_FULL_NAME}"
+                LOGSTASH_GEMFILE: "/opt/logstash/Gemfile"
+        command: --enable-local-plugin-development
         networks:
             logstash_bridge:
                 aliases:
@@ -15,9 +19,9 @@ services:
             - 5044:5044
             - 9600:9600
         volumes:
-#            - type: "bind"
-#              source: "${PLUGIN_HOME:-./mounts/logstash-plugin}"
-#              target: "/home/logstash-plugin"
+            - type: "bind"
+              source: "${PLUGIN_HOME:-./mounts/logstash-plugin}"
+              target: "/home/logstash/plugins/${PLUGIN_FULL_NAME}"
             - type: "bind"
               source: "${LOGSTASH_PIPELINE:-./mounts/logstash/pipeline}"
               target: "/usr/share/logstash/pipeline"

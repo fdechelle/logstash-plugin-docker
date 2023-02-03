@@ -1,8 +1,8 @@
 FROM logstash:8.6.1
 
-ENV PLUGIN_FULL_NAME=logstash-codec-awesome
-ENV PLUGIN_HOME=/home/logstash/plugins/$PLUGIN_FULL_NAME
-ENV LOGSTASH_GEMFILE=/opt/logstash/Gemfile
+ARG PLUGIN_FULL_NAME
+ARG PLUGIN_HOME=/home/logstash/plugins/$PLUGIN_FULL_NAME
+ARG LOGSTASH_GEMFILE=/opt/logstash/Gemfile
 
 # Add plugin to logstash gem file
 RUN grep -qs ${PLUGIN_FULL_NAME} ${LOGSTASH_GEMFILE} || echo 'gem "'${PLUGIN_FULL_NAME}'", :path => "'${PLUGIN_HOME}'"' >> ${LOGSTASH_GEMFILE}
