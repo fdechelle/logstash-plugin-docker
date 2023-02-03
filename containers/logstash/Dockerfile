@@ -1,11 +1,11 @@
 FROM logstash:8.6.1
 
 ARG PLUGIN_FULL_NAME
-ARG PLUGIN_HOME=/home/logstash/plugins/$PLUGIN_FULL_NAME
-ARG LOGSTASH_GEMFILE=/opt/logstash/Gemfile
+ARG PLUGIN_PATH
+ENV LOGSTASH_GEMFILE=/opt/logstash/Gemfile
 
 # Add plugin to logstash gem file
-RUN grep -qs ${PLUGIN_FULL_NAME} ${LOGSTASH_GEMFILE} || echo 'gem "'${PLUGIN_FULL_NAME}'", :path => "'${PLUGIN_HOME}'"' >> ${LOGSTASH_GEMFILE}
+RUN grep -qs ${PLUGIN_FULL_NAME} ${LOGSTASH_GEMFILE} || echo 'gem "'${PLUGIN_FULL_NAME}'", :path => "'${PLUGIN_PATH}'"' >> ${LOGSTASH_GEMFILE}
 
 # Must pass --enable-local-plugin-development option to run logstash 
 

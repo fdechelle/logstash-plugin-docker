@@ -7,9 +7,8 @@ services:
         build:
             context: "containers/logstash"
             args:
-                PLUGIN_FULL_NAME: "${PLUGIN_FULL_NAME:-logstash-output-stdout}"
-                PLUGIN_HOME: "/home/logstash/plugins/${PLUGIN_FULL_NAME}"
-                LOGSTASH_GEMFILE: "/opt/logstash/Gemfile"
+                PLUGIN_FULL_NAME: "${PLUGIN_FULL_NAME}"
+                PLUGIN_PATH: "/home/logstash/plugins/${PLUGIN_FULL_NAME}"
         command: --enable-local-plugin-development
         networks:
             logstash_bridge:
