@@ -6,6 +6,9 @@
 		},
 		{
 			"path": "../logstash-codec-idmefv2"
+		},
+		{
+			"path": "../idmefv2-docker-images"
 		}
 	],
 	"settings": {}

@@ -50,6 +50,22 @@ services:
               source: "${BEATS_CONFIG:-./mounts/beats/filebeat.docker.yml}"
               target: "/usr/share/filebeat/filebeat.yml"
               read_only: true
+    idmefv2javaserver:
+        image: "fdshell/idmefv2java"
+        container_name: "idmefv2javaserver"
+        restart: "unless-stopped"
+        networks:
+            logstash_bridge:
+        ports:
+            - 9999:9999
+        command: "./server.sh --port 9999"
+    idmefv2javaclient:
+        image: "fdshell/idmefv2java"
+        container_name: "idmefv2javaclient"
+        restart: "unless-stopped"
+        networks:
+            logstash_bridge:
+        command: "./client.sh --server http://idmefv2javaserver:9999 --retry 1000 --delay 5000"
 
 networks:
     logstash_bridge:
