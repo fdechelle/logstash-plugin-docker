@@ -8,6 +8,7 @@ This is a docker-compose application to run various Docker containers connected 
 
 `docker-compose` simplifies Docker containers definition and configuration using definitions declared in `docker-compose.*-.yml` files.
 
+For now, only one `docker-compose.yml`
 Services declarations are splitted into following files, in order to be able to run only selected services:
 - `docker-compose.beats.yml` for filebeat
 - `docker-compose.nginx.yml` for nginx
