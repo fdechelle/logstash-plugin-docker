@@ -17,6 +17,7 @@ services:
         ports:
             - 5044:5044
             - 9600:9600
+            - 9999:9999
         volumes:
             - type: "bind"
               source: "${PLUGIN_HOME:-./mounts/logstash-plugin}"
@@ -65,7 +66,7 @@ services:
         restart: "unless-stopped"
         networks:
             logstash_bridge:
-        command: "./client.sh --server http://idmefv2javaserver:9999 --retry 1000 --delay 5000"
+        command: "./client.sh --server ${JAVA_SERVER_HOST} --retry 1000 --delay 5000"
 
 networks:
     logstash_bridge:
