@@ -67,7 +67,7 @@ services:
         restart: "unless-stopped"
         networks:
             logstash_bridge:
-        command: "./client.sh --server ${JAVA_SERVER_HOST} --retry 1000 --delay 5000"
+        command: "./client.sh --server ${JAVA_SERVER_HOST} --retry 1000 --delay 10000"
 
 networks:
     logstash_bridge:
