@@ -9,6 +9,7 @@ services:
             args:
                 PLUGIN_FULL_NAME: "${PLUGIN_FULL_NAME}"
                 PLUGIN_PATH: "/home/logstash/plugins/${PLUGIN_FULL_NAME}"
+#        command: --enable-local-plugin-development --config.test_and_exit
         command: --enable-local-plugin-development --debug
         networks:
             logstash_bridge:
